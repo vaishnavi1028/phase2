@@ -1,0 +1,15 @@
+import pandas as pd
+
+# Load real and fake news
+fake_df = pd.read_csv("Fake.csv")
+real_df = pd.read_csv("True.csv")
+
+# Add labels
+fake_df['label'] = 0  # Fake
+real_df['label'] = 1  # Real
+
+# Combine and shuffle
+df = pd.concat([fake_df, real_df]).sample(frac=1).reset_index(drop=True)
+
+# Preview
+print(df.head())
